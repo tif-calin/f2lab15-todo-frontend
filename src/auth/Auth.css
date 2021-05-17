@@ -1,0 +1,39 @@
+.Auth {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.Auth > fieldset {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+fieldset {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  border: 1px solid black;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+fieldset > label {
+  margin: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+fieldset > label > input {
+  margin-left: 1rem;
+}
+
+label > button {
+  margin-left: 1rem;
+}
