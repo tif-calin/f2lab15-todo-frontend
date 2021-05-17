@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import Home from '../home/Home';
+import Auth from '../auth/Auth';
 import {
   BrowserRouter as Router,
   Route,
@@ -26,15 +27,21 @@ class App extends Component {
                 )}
               />
 
-              <Route path="/resources" exact={true}
+              <Route path="/auth"
                 render={routerProps => (
-                  <div>Implement a page of resources</div>
+                  <Auth {...routerProps}/>
                 )}
               />
 
-              <Route path="/resources/:id"
+              <Route path="/todos" exact={true}
                 render={routerProps => (
-                  <div>Implement a page for id {routerProps.match.params.id}</div>
+                  <div>Implement a page of todos</div>
+                )}
+              />
+
+              <Route path="/todos/:id"
+                render={routerProps => (
+                  <div>{routerProps.match.params.id}</div>
                 )}
               />
 
