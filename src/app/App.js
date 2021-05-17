@@ -10,6 +10,7 @@ import {
   Redirect
 } from 'react-router-dom';
 import './App.css';
+import TodoList from '../todos/TodosList';
 
 class App extends Component {
 
@@ -17,25 +18,25 @@ class App extends Component {
     return (
       <div className="App">
         <Router>
-          <Header/>
+          <Header />
           <main>
 
             <Switch>
               <Route path="/" exact={true}
                 render={routerProps => (
-                  <Home {...routerProps}/>
+                  <Home {...routerProps} />
                 )}
               />
 
               <Route path="/auth"
                 render={routerProps => (
-                  <Auth {...routerProps}/>
+                  <Auth {...routerProps} />
                 )}
               />
 
               <Route path="/todos" exact={true}
                 render={routerProps => (
-                  <div>Implement a page of todos</div>
+                  <TodoList {...routerProps} />
                 )}
               />
 
@@ -49,7 +50,7 @@ class App extends Component {
 
             </Switch>
           </main>
-          <Footer/>
+          <Footer />
         </Router>
       </div>
     );
