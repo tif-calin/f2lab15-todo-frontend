@@ -23,45 +23,24 @@ export default class Auth extends Component {
 
     const { onUser, history } = this.props;
 
-    if (this.state.isSignUp) {
-      // sign up and then sign in
-      try {
-        const { name, email, password } = this.state;
-  
-        const user = {
-          name: name,
-          email: email,
-          password: password
-        };
-  
-        await signUp(user);
-        const resp = await signIn(user);
-        onUser(resp);
-        history.push('/todos');
-      }
-      catch (err) {
-        this.setState({ error: err.message });
-      }
-    }
-    else {
-      //sign in
-      try {
-        const { name, email, password } = this.state;
+    try {
+      const { name, email, password } = this.state;
 
-        const user = {
-          name: name,
-          email: email,
-          password: password
-        };
+      const user = {
+        name: name,
+        email: email,
+        password: password
+      };
 
-        const resp = await signIn(user);
-        onUser(resp);
-        history.push('/todos');
-      }
-      catch (err) {
-        this.setState({ error: err.message });
-      }
+      if (this.state.isSignUp) await signUp(user);
+      const resp = await signIn(user);
+      onUser(resp);
+      history.push('/todos');
     }
+    catch (err) {
+      this.setState({ error: err.message });
+    }
+    
   }
 
   handleNameChange = e => {
