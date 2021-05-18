@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Header from './Header';
 import Footer from './Footer';
 import Home from '../home/Home';
+import Auth from '../auth/Auth';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,32 +10,56 @@ import {
   Redirect
 } from 'react-router-dom';
 import './App.css';
+import TodoList from '../todos/TodosList';
 
 class App extends Component {
+
+  state = {
+    token: (window.localStorage.getItem('TOKEN')) ? window.localStorage.getItem('TOKEN') : '',
+    userId: 0
+  }
+
+  setUser = user => {
+    window.localStorage.setItem('TOKEN', user.token);
+    window.localStorage.setItem('USERID', user.id);
+    this.setState({ token: user.token, userId: user.id });
+  }
 
   render() {
     return (
       <div className="App">
         <Router>
-          <Header/>
+          <Header />
           <main>
 
             <Switch>
               <Route path="/" exact={true}
                 render={routerProps => (
-                  <Home {...routerProps}/>
+                  <Home {...routerProps} />
                 )}
               />
 
-              <Route path="/resources" exact={true}
+              <Route path="/auth"
                 render={routerProps => (
-                  <div>Implement a page of resources</div>
+                  <Auth onUser={this.setUser} {...routerProps} />
                 )}
               />
 
-              <Route path="/resources/:id"
+              <Route path="/todos" exact={true}
                 render={routerProps => (
-                  <div>Implement a page for id {routerProps.match.params.id}</div>
+                  (this.state.token) ? <TodoList userId={this.state.userId} {...routerProps}/> : <Redirect to="/auth"/>
+                )}
+              />
+
+              <Route path="/todos/public"
+                render={routerProps => (
+                  <TodoList public={true} {...routerProps} />
+                )}
+              />
+
+              <Route path="/todos/:id"
+                render={routerProps => (
+                  <div>{routerProps.match.params.id}</div>
                 )}
               />
 
@@ -42,7 +67,7 @@ class App extends Component {
 
             </Switch>
           </main>
-          <Footer/>
+          <Footer />
         </Router>
       </div>
     );

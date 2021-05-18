@@ -6,5 +6,14 @@
 
 main {
   background: #FAF0EA;
+  background-image: url("https://cdn.pixabay.com/photo/2017/07/13/16/16/paper-2500942_1280.jpg");
+  background-size: 100% 75%;
+  background-repeat: repeat-y;
+  display: flex;
+  justify-content: center;
 }
 
+.page-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
