@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { addTodo, getMyTodos } from '../utils';
+import { addTodo, completeTodo, deleteTodo, getMyTodos } from '../utils';
 import TodoItem from './TodoItem';
+import './TodosList.css';
 
 export default class TodosList extends Component {
   state = {
@@ -36,8 +37,20 @@ export default class TodosList extends Component {
     this.setState({ todos: await getMyTodos() });
   }
 
+  handleDelete = async e => {
+    e.preventDefault();
+    await deleteTodo(e.target.value);
+    this.setState({ todos: await getMyTodos() });
+  }
 
-
+  handleComplete = async e => {
+    const todo = {
+      id: e.target.value,
+      completed: e.target.checked
+    };
+    console.log(todo);
+    await completeTodo(todo);
+  }
 
   render() {
     const { todos } = this.state;
@@ -45,15 +58,15 @@ export default class TodosList extends Component {
 
       <form className="TodosList">
         <ul>
-          <fieldset>
+          <fieldset className="add-todo">
             <li>
               <input type="text" onChange={this.handleAddTodoChange} />
               <button onClick={this.handleAddTodo}>Add</button>
             </li>
           </fieldset>
           <fieldset>
-            {todos.map(todo => {
-              return <TodoItem key={todo.id} todo={todo} />;
+            {todos.reverse().map(todo => {
+              return <TodoItem key={todo.id} todo={todo} onDelete={this.handleDelete} onComplete={this.handleComplete}/>;
             })}
           </fieldset>
         </ul>

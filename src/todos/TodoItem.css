@@ -1,0 +1,14 @@
+.TodoItem {
+  margin-top: 0.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.TodoItem > * {
+  margin: 0.25rem;
+}
+
+input:checked + span {
+  text-decoration: line-through;
+}
