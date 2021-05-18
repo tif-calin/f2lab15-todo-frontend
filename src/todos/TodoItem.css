@@ -29,6 +29,11 @@
   background-color: #08f5;
 }
 
+.shared {
+  opacity: 1;
+  background-color: #08f5;
+}
+
 .TodoItem > * {
   margin: 0 0.5rem;
 }

@@ -44,15 +44,6 @@ export default class TodosList extends Component {
     this.setState({ todos: await getMyTodos() });
   }
 
-  handleComplete = async e => {
-    const todo = {
-      id: e.target.value,
-      completed: e.target.checked
-    };
-    console.log(todo);
-    await completeTodo(todo);
-  }
-
   render() {
     const { todos } = this.state;
     return (
@@ -67,7 +58,7 @@ export default class TodosList extends Component {
           </fieldset>
           <fieldset className="todo-list">
             {todos.reverse().map(todo => {
-              return <TodoItem key={todo.id} todo={todo} onDelete={this.handleDelete} onComplete={this.handleComplete}/>;
+              return <TodoItem key={todo.id} todo={todo} onDelete={this.handleDelete}/>;
             })}
           </fieldset>
         </ul>
