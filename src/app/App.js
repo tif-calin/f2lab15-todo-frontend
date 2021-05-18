@@ -15,12 +15,14 @@ import TodoList from '../todos/TodosList';
 class App extends Component {
 
   state = {
-    token: ''
+    token: '',
+    userId: 0
   }
 
   setUser = user => {
     window.localStorage.setItem('TOKEN', user.token);
-    this.setState({ token: user.token });
+    window.localStorage.setItem('USERID', user.id);
+    this.setState({ token: user.token, userId: user.id });
   }
 
   render() {
@@ -39,13 +41,13 @@ class App extends Component {
 
               <Route path="/auth"
                 render={routerProps => (
-                  <Auth onUser={this.setUser} { ...routerProps } />
+                  <Auth onUser={this.setUser} {...routerProps} />
                 )}
               />
 
               <Route path="/todos" exact={true}
                 render={routerProps => (
-                  <TodoList {...routerProps} />
+                  <TodoList userId={this.state.userId} {...routerProps} />
                 )}
               />
 

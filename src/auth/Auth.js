@@ -40,7 +40,7 @@ export default class Auth extends Component {
     catch (err) {
       this.setState({ error: err.message });
     }
-    
+
   }
 
   handleNameChange = e => {
@@ -54,7 +54,7 @@ export default class Auth extends Component {
   handlePasswordChange = e => {
     this.setState({ password: e.target.value });
   }
-  
+
   render() {
     const { isSignUp } = this.state;
 
@@ -63,19 +63,20 @@ export default class Auth extends Component {
         <h2 className="page-title">Sign {(isSignUp) ? 'up' : 'in'}</h2>
 
         <fieldset>
-          <label>
-            Username:
-            <input required onChange={this.handleNameChange}/>
-          </label>
-          {isSignUp && 
+          {isSignUp &&
             <label>
-              Email:
-              <input onChange={this.handleEmailChange}/>
+              Username:
+              <input required onChange={this.handleNameChange} />
             </label>
           }
           <label>
+            Email:
+            <input onChange={this.handleEmailChange} />
+          </label>
+
+          <label>
             Password:
-            <input type="password" required onChange={this.handlePasswordChange}/>
+            <input type="password" required onChange={this.handlePasswordChange} />
           </label>
           <button type="submit">{(isSignUp) ? 'Create Account' : 'Sign In'}</button>
         </fieldset>

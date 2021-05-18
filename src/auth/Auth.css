@@ -15,7 +15,7 @@
   font-weight: bold;
 }
 
-fieldset {
+.Auth fieldset {
   margin-top: 1rem;
   margin-bottom: 2rem;
   border: 1px solid black;
