@@ -14,6 +14,15 @@ import TodoList from '../todos/TodosList';
 
 class App extends Component {
 
+  state = {
+    token: ''
+  }
+
+  setUser = user => {
+    window.localStorage.setItem('TOKEN', user.token);
+    this.setState({ token: user.token });
+  }
+
   render() {
     return (
       <div className="App">
@@ -30,7 +39,7 @@ class App extends Component {
 
               <Route path="/auth"
                 render={routerProps => (
-                  <Auth {...routerProps} />
+                  <Auth onUser={this.setUser} { ...routerProps } />
                 )}
               />
 

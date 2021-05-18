@@ -1,8 +1,10 @@
 import request from 'superagent';
 
+const URL = 'https://infinite-eyrie-70586.herokuapp.com';
+
 export async function signUp(user) {
   const response = await request
-    .post('/api/auth/signup')
+    .post(URL + '/api/auth/signup')
     .ok(res => res.status < 500)
     .send(user);
 
@@ -15,7 +17,7 @@ export async function signUp(user) {
 
 export async function signIn(user) {
   const response = await request
-    .post('/api/auth/signin')
+    .post(URL + '/api/auth/signin')
     .ok(res => res.status < 500)
     .send(user);
 
@@ -28,7 +30,7 @@ export async function signIn(user) {
 
 export async function getMyTodos() {
   const response = await request
-    .get('/api/me/todos')
+    .get(URL + '/api/me/todos')
     .set('Authorization', window.localStorage.getItem('TOKEN'));
 
   return response.body;
@@ -36,7 +38,7 @@ export async function getMyTodos() {
 
 export async function addTodo(todo) {
   const response = await request 
-    .post('/api/todos')
+    .post(URL + '/api/todos')
     .set('Authorization', window.localStorage.getItem('TOKEN'))
     .send(todo);
 
@@ -45,7 +47,7 @@ export async function addTodo(todo) {
 
 export async function getSharedTodos() {
   const response = await request 
-    .get('/api/todos')
+    .get(URL + '/api/todos')
     .set('Authorization', window.localStorage.getItem('TOKEN'));
 
   return response.body;
@@ -53,7 +55,7 @@ export async function getSharedTodos() {
 
 export async function completeTodo(todo) {
   const response = await request 
-    .put(`/api/todos/${todo.id}/completed`)
+    .put(URL + `/api/todos/${todo.id}/completed`)
     .set('Authorization', window.localStorage.getItem('TOKEN'))
     .send(todo);
 
@@ -62,7 +64,7 @@ export async function completeTodo(todo) {
 
 export async function shareTodo(todo) {
   const response = await request 
-    .put(`/api/todos/${todo.id}/shared`)
+    .put(URL + `/api/todos/${todo.id}/shared`)
     .set('Authorization', window.localStorage.getItem('TOKEN'))
     .send(todo);
 
@@ -71,7 +73,7 @@ export async function shareTodo(todo) {
 
 export async function deleteTodo(id) {
   const response = await request 
-    .delete(`/api/todos/${id}`)
+    .delete(URL + `/api/todos/${id}`)
     .set('Authorization', window.localStorage.getItem('TOKEN'));
   
   return response.body;
