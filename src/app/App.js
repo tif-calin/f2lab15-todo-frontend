@@ -15,7 +15,7 @@ import TodoList from '../todos/TodosList';
 class App extends Component {
 
   state = {
-    token: '',
+    token: (window.localStorage.getItem('TOKEN')) ? window.localStorage.getItem('TOKEN') : '',
     userId: 0
   }
 
@@ -47,7 +47,13 @@ class App extends Component {
 
               <Route path="/todos" exact={true}
                 render={routerProps => (
-                  <TodoList userId={this.state.userId} {...routerProps} />
+                  (this.state.token) ? <TodoList userId={this.state.userId} {...routerProps}/> : <Redirect to="/auth"/>
+                )}
+              />
+
+              <Route path="/todos/public"
+                render={routerProps => (
+                  <TodoList public={true} {...routerProps} />
                 )}
               />
 

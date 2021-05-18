@@ -10,6 +10,7 @@ export default class Home extends Component {
         <h2 className="page-title">Home Page</h2>
 
         <Link to='/auth'>sign up / sign in</Link>
+        <Link to='/todos/public'>see public todos</Link>
       </div>
     );
   }

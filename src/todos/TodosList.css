@@ -35,3 +35,17 @@ fieldset.todo-list {
   margin-top: 1rem;
   border-radius: 10px;
 }
+
+.public-todo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 0.25rem;
+  height: 1.6rem;
+  opacity: 0.75;
+}
+
+.page-title {
+  width: 100%;
+  text-align: center;
+}
