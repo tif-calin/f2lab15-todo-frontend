@@ -5,14 +5,14 @@
   justify-content: center;
 }
 
+button {
+  text-transform: lowercase;
+}
+
 .Auth > fieldset {
   display: flex;
   flex-direction: column;
-}
-
-.page-title {
-  font-size: 1.5rem;
-  font-weight: bold;
+  background-color: #fffc;
 }
 
 .Auth fieldset {

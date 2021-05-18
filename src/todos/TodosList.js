@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { addTodo, completeTodo, deleteTodo, getMyTodos } from '../utils';
 import TodoItem from './TodoItem';
 import './TodosList.css';
@@ -64,12 +65,13 @@ export default class TodosList extends Component {
               <button onClick={this.handleAddTodo}>Add</button>
             </li>
           </fieldset>
-          <fieldset>
+          <fieldset className="todo-list">
             {todos.reverse().map(todo => {
               return <TodoItem key={todo.id} todo={todo} onDelete={this.handleDelete} onComplete={this.handleComplete}/>;
             })}
           </fieldset>
         </ul>
+        <Link to='/'><button>home</button></Link>
       </form>
     );
   }

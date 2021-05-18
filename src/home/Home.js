@@ -7,7 +7,7 @@ export default class Home extends Component {
   render() {
     return (
       <div className="Home">
-        <h2>Home Page</h2>
+        <h2 className="page-title">Home Page</h2>
 
         <Link to='/auth'>sign up / sign in</Link>
       </div>
